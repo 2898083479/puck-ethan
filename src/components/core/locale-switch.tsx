@@ -29,6 +29,7 @@ export default function LocaleSwitch() {
                 <SelectContent>
                     <SelectItem value="en">English</SelectItem>
                     <SelectItem value="sc">简体中文</SelectItem>
+                    <SelectItem value="tc">繁体中文</SelectItem>
                 </SelectContent>
             </Select>
         </div>

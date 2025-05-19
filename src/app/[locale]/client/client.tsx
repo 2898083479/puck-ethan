@@ -7,8 +7,8 @@ export default function Page() {
  
   return (
     <div>
-      <p>{t('test.title')}</p>
-      <p>{t('test.description')}</p>
+      <p>{t('test.en_us.title')}</p>
+      <p>{t('test.en_us.description')}</p>
     </div>
   )
 }
