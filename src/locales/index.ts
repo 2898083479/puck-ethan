@@ -18,9 +18,9 @@ export const LANGUAGE_LOCALE = {
 } as const;
 
 const DEFAULT_LANGUAGE = {
-    en: ['en-US', enUS],
-    tc: ['zh-HK', zhHK],
-    sc: ['zh-CN', zhCN]
+    en: ['en-US', "en-GB"],
+    tc: ['zh-HK', "zh-TW"],
+    sc: ['zh-CN', "zh-SG"]
 };
 
 export const LanguageDetector = (lang: string) => {

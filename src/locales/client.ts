@@ -2,9 +2,9 @@
 
 import { createI18nClient } from "next-international/client";
 
-export const { 
-    useI18n, 
-    useScopedI18n, 
+export const {
+    useI18n,
+    useScopedI18n,
     I18nProviderClient,
     useChangeLocale,
     useCurrentLocale
@@ -12,4 +12,4 @@ export const {
     en: () => import('./en-US'),
     sc: () => import('./zh-CN'),
     tc: () => import('./zh-HK')
-  })
+})
