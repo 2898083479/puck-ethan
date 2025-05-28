@@ -2,7 +2,6 @@ import { getScopedI18n } from "@/locales/server";
 import { headers } from "next/headers";
 import { LayoutClient } from "./client";
 import "../globals.css";
-import { ToggleLanguage } from "@/components/core/toggle-language/locale-switch";
 
 export interface RootLayoutProps {
     children: React.ReactNode;
