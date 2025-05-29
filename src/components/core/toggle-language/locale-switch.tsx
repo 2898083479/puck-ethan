@@ -12,8 +12,10 @@ import {
     useCurrentLocale,
 } from "@/locales";
 import { GrLanguage } from "react-icons/gr";
+import { useI18n } from "@/locales";
 
 export const ToggleLanguage = () => {
+    const t = useI18n();
     const changeLanguage = useChangeLocale({
         preserveSearchParams: true,
     });
@@ -32,7 +34,7 @@ export const ToggleLanguage = () => {
                             checked={language === lang}
                             onClick={() => changeLanguage(lang)}
                         >
-                            {lang}
+                            {t(`root.language.${lang}`)}
                         </DropdownMenuCheckboxItem>
                     );
                 })}
