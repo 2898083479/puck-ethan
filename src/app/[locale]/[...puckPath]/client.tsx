@@ -1,28 +1,18 @@
 "use client";
-
-import { NextSeo } from "next-seo";
-
-export const Client = () => {
+import { Render } from "@measured/puck";
+import { Templates } from "@/template";
+import { useParams } from "next/navigation";
+export const RenderClient = () => {
+    const { template } = useParams();
+    const templateConfig = Templates[template as keyof typeof Templates];
     return (
         <>
-            <NextSeo
-                title="Test Page"
-                description="Test Description"
-                openGraph={{
-                    title: "Test Page",
-                    description: "Test Description",
-                    images: [
-                        {
-                            url: "https://example.com/image.jpg",
-                        }
-                    ]
-                }}
-                twitter={{
-                    cardType: "summary_large_image",
-                }}
-            />
             <div>
                 <h1>Test Page</h1>
+                <Render
+                    config={templateConfig.config}
+                    data={{}}
+                />
             </div>
         </>
     )

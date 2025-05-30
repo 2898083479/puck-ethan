@@ -1,7 +1,7 @@
-import { Client } from "./client";
+import { RenderClient } from "./client";
 
 export default function Page() {
     return (
-        <Client />
+        <RenderClient />
     )
 }

@@ -4,7 +4,8 @@ export const Templates: Record<
     string,
     {
         name: string;
-        config: any
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        config: any;
     }
 > = {
     testTemplate01: {

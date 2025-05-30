@@ -1,7 +1,8 @@
 "use client"
 
-import { Config, Puck } from "@measured/puck";
+import { type Config, Puck } from "@measured/puck";
 import "@measured/puck/puck.css";
+import { CustomHeader } from "./_custom-header";
 
 const config: Config = {
     components: {
@@ -27,6 +28,9 @@ export default function Client() {
         <Puck
             config={config}
             data={{}}
+            overrides={{
+                header: () => <CustomHeader />
+            }}
         />
     )
 }

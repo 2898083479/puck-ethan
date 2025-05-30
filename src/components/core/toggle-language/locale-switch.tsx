@@ -30,7 +30,7 @@ export const ToggleLanguage = () => {
                 {LANGUAGES.map((lang, index) => {
                     return (
                         <DropdownMenuCheckboxItem
-                            key={index}
+                            key={lang}
                             checked={language === lang}
                             onClick={() => changeLanguage(lang)}
                         >

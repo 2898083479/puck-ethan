@@ -9,7 +9,8 @@ import {
 import type { TestTemplate01Props } from "./types";
 
 export type BlockProps = {
-
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    [key: string]: any;
 };
 
 export type ComponentProps = UIProps & LayoutProps & BlockProps;
@@ -21,6 +22,7 @@ export type PuckConfig = Config<ComponentProps, TestTemplate01Props, Category>;
 export const TestTemplate01Config: PuckConfig = {
     root: {},
     components: {
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         ...(CommonComponents as any)
     },
     categories: {
