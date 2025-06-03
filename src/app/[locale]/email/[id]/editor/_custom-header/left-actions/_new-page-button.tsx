@@ -7,15 +7,21 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogDescription,
     DialogFooter
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
 // create a new page button
 const NewPageButton = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [pathName, setPathName] = useState("");
+
+    const createNewPage = async (pathName: string) => {
+        console.log(pathName);
+    }
 
     return (
         <>
@@ -36,9 +42,15 @@ const NewPageButton = () => {
                 >
                     <DialogHeader>
                         <DialogTitle>New Page</DialogTitle>
-                        <DialogDescription>
-                            Create a new page
-                        </DialogDescription>
+                        <div className="flex flex-col gap-2">
+                            <Label>
+                                Path Name
+                            </Label>
+                            <Input
+                                value={pathName}
+                                onChange={(e) => setPathName(e.target.value)}
+                            />
+                        </div>
                     </DialogHeader>
                     <DialogFooter>
                         <div className="flex gap-2">
@@ -48,7 +60,11 @@ const NewPageButton = () => {
                             >
                                 Cancel
                             </Button>
-                            <Button>Create</Button>
+                            <Button
+                                onClick={() => createNewPage(pathName)}
+                            >
+                                Create
+                            </Button>
                         </div>
                     </DialogFooter>
                 </DialogContent>

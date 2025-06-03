@@ -3,6 +3,7 @@
 import { type Config, Puck } from "@measured/puck";
 import "@measured/puck/puck.css";
 import { CustomHeader } from "./_custom-header";
+import { Templates } from "@/template";
 
 const config: Config = {
     components: {
@@ -26,7 +27,7 @@ const config: Config = {
 export default function Client() {
     return (
         <Puck
-            config={config}
+            config={Templates.testTemplate01.config}
             data={{}}
             overrides={{
                 header: () => <CustomHeader />

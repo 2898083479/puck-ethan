@@ -7,6 +7,7 @@ import {
     type UIProps,
 } from "../config";
 import type { TestTemplate01Props } from "./types";
+import { EmailContent } from "@/core/components/ui/email-content";
 
 export type BlockProps = {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -23,7 +24,8 @@ export const TestTemplate01Config: PuckConfig = {
     root: {},
     components: {
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        ...(CommonComponents as any)
+        ...(CommonComponents as any),
+        EmailContent,
     },
     categories: {
         Layout: {
@@ -34,7 +36,7 @@ export const TestTemplate01Config: PuckConfig = {
         },
         Blocks: {
             components: [
-
+                "EmailContent"
             ]
         }
     },
