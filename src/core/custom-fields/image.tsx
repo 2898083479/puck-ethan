@@ -1,6 +1,5 @@
 import { Input } from "@/components/ui/input";
 import { CheckCircle, Loader2, Upload } from "lucide-react";
-import { Span } from "next/dist/trace";
 import { useState } from "react";
 import { toast } from "sonner";
 

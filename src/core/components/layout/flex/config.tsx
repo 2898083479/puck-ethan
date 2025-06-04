@@ -3,7 +3,6 @@ import { ImageField } from "@/core/custom-fields/image";
 import { PaddingInput } from "@/core/custom-fields/padding-input";
 import type { Fields } from "@measured/puck";
 import type { FlexProps } from ".";
-import type { FillHeightType } from "../../types";
 
 export const ComponentFields: Fields<Partial<FlexProps>> = {
   ...getBasicFields(),

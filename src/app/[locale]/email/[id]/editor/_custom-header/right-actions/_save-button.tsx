@@ -6,21 +6,21 @@ import { useParams } from "next/navigation";
 import { usePuck } from "@measured/puck";
 
 export const SaveButton = () => {
-  // Get the id from the url
-  const { id } = useParams<{ id: string }>();
-  const { appState } = usePuck();
+    // Get the id from the url
+    const { id } = useParams<{ id: string }>();
+    const { appState } = usePuck();
 
-  const lang = useCurrentLocale();
+    const lang = useCurrentLocale();
 
-  return (
-    <Button
-      variant="secondary"
-      className="text-tp hover:text-ts"
-      onClick={() => {
-        console.log(lang);
-      }}
-    >
-      Save
-    </Button>
-  );
+    return (
+        <Button
+            variant="secondary"
+            className="text-tp hover:text-ts"
+            onClick={() => {
+                console.log(lang);
+            }}
+        >
+            Save
+        </Button>
+    );
 };

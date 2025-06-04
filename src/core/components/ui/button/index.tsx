@@ -1,5 +1,5 @@
 import type { BasicProps } from "../../types";
-import { ComponentConfig } from "@measured/puck";
+import type { ComponentConfig } from "@measured/puck";
 import { ComponentFields } from "./config";
 import { Component } from "./component";
 import { DefaultProps } from "./config";

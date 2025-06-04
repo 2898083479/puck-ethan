@@ -1,9 +1,7 @@
 import type { BasicProps } from "../../types";
 import type { ComponentConfig } from "@measured/puck";
-import { FillHeightType } from "../../types";
-import { merge } from "ts-deepmerge";
+import type { FillHeightType } from "../../types";
 import { Component } from "./component";
-import { ComponentFields, DefaultProps } from "./config";
 
 export interface FlexProps extends BasicProps {
   maxWidth: number;

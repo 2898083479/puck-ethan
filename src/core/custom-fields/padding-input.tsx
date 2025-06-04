@@ -1,5 +1,4 @@
 import { Input } from "@/components/ui/input";
-import { CheckCircle } from "lucide-react";
 
 interface Props {
   name: string;
