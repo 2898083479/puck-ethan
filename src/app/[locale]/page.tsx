@@ -1,7 +1,7 @@
 import { PageClient } from "./client";
 
 const Page = () => {
-    return <PageClient />
-}
+  return <PageClient />;
+};
 
 export default Page;

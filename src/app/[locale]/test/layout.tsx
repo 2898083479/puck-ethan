@@ -2,14 +2,14 @@ import Layout from "../layout";
 import { ToggleLanguage } from "@/components/core/toggle-language/locale-switch";
 
 export default function TestLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <div>
-            <ToggleLanguage />
-            {children}
-        </div>
-    );
+  return (
+    <div>
+      <ToggleLanguage />
+      {children}
+    </div>
+  );
 }

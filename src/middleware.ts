@@ -1,7 +1,7 @@
-import { createI18nMiddleware } from 'next-international/middleware'
-import { NextRequest, NextResponse } from 'next/server'
-import { LANGUAGES } from './locales'
-import { noLocalePrefix } from './middlewares'
+import { createI18nMiddleware } from "next-international/middleware";
+import { NextRequest, NextResponse } from "next/server";
+import { LANGUAGES } from "./locales";
+import { noLocalePrefix } from "./middlewares";
 
 const IGNORE_AUTH_PATHS = [
   "/",
@@ -12,13 +12,13 @@ const IGNORE_AUTH_PATHS = [
 ];
 
 const I18nMiddleware = createI18nMiddleware({
-  locales: ['en', 'sc', 'tc'],
-  defaultLocale: 'en'
-})
+  locales: ["en", "sc", "tc"],
+  defaultLocale: "en",
+});
 
 // 重定向到默认语言
 export function middleware(request: NextRequest) {
-  return I18nMiddleware(request)
+  return I18nMiddleware(request);
 }
 
 function isIgnoredAuthPath(pathname: string): boolean {
@@ -27,7 +27,7 @@ function isIgnoredAuthPath(pathname: string): boolean {
 
 // 重定向
 function redirectTo(url: string, request: NextRequest) {
-  return NextResponse.redirect(new URL(url, request.url))
+  return NextResponse.redirect(new URL(url, request.url));
 }
 
 // 处理认证重定向
@@ -42,7 +42,7 @@ function handleAuthRedirect(
   const pathnameWithoutLocale = noLocalePrefix(LANGUAGES, pathname)
     ? pathname
     : `/${pathname.split("/", 3)?.[2]}`;
-  
+
   if (isIgnoredAuthPath(pathnameWithoutLocale) && token) {
     if (pathnameWithoutLocale === "/") return undefined;
     return redirectTo(pathnameWithoutLocale, request);
@@ -57,5 +57,5 @@ function handleAuthRedirect(
 }
 
 export const config = {
-  matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)']
-}
+  matcher: ["/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)"],
+};

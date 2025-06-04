@@ -5,16 +5,16 @@ import type { RootLayoutProps } from "./layout";
 import { RenderClient } from "./[...puckPath]/client";
 
 export const LayoutClient = ({
-    children,
-    params: { locale },
+  children,
+  params: { locale },
 }: RootLayoutProps) => {
-    return <I18nProviderClient locale={locale}>{children}</I18nProviderClient>;
+  return <I18nProviderClient locale={locale}>{children}</I18nProviderClient>;
 };
 
 export const PageClient = () => {
-    return (
-        <div>
-            <RenderClient />
-        </div>
-    )
-}
+  return (
+    <div>
+      <RenderClient />
+    </div>
+  );
+};
