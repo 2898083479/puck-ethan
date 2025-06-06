@@ -53,7 +53,6 @@ const Test1 = () => {
     setWithSwitch(!withSwitch);
   }
 
-
   const getNow = () => {
     return format(new Date().toISOString(), "yyyy-MM-dd HH:mm:ss");
   }
@@ -81,7 +80,7 @@ const Test1 = () => {
 
   return (
     <>
-      <NextSeo title={"hello"}/>
+      <NextSeo title={"hello"} />
       <motion.div
         style={ButtonStyle}
         animate={{ rotate: 360 }}
@@ -115,7 +114,11 @@ const Test1 = () => {
         not cut
       </div>
 
-      <img className="size-24 object-left" src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&h=1000&q=90" alt="mountains" />
+      <img
+        className="size-24 object-left"
+        src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&h=1000&q=90"
+        alt="mountains"
+      />
       <div className="flex flex-row gap-2 invisible">
         <div className="bg-slate-400 border rounded-md px-2 w-10">1</div>
         <div className="bg-slate-400 border rounded-md px-2 w-10 visible">2</div>

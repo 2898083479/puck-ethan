@@ -6,16 +6,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Text } from "lucide-react";
+import { Fonts } from "@/app/fonts";
 
 const fontFamilyOptions = [
   "Arial",
   "Helvetica",
   "Times New Roman",
   "Courier New",
-  "Verdana",
-  "Georgia",
-  "Palatino",
-  "Garamond",
+  ...Fonts.map((font) => font.label),
 ];
 
 interface Props {
@@ -32,7 +30,7 @@ export const FontFamilySelector = ({ name, value, onChange }: Props) => {
         <div>{name}</div>
       </div>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger>
+        <SelectTrigger value={value}>
           <SelectValue placeholder="Select a font" />
         </SelectTrigger>
         <SelectContent>

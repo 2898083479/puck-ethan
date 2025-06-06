@@ -25,4 +25,9 @@ module.exports = {
       { test: /\.ts$/, use: "ts-loader" },
     ],
   },
+  externals: {
+    fs: "commonjs2 fs",
+    path: "commonjs2 path",
+    stream: "commonjs2 stream/promises",
+  }
 };

@@ -2,6 +2,7 @@ import type { Fields } from "@measured/puck";
 import type { EmailContentProps } from ".";
 import { getBasicFields } from "../../common";
 import { EmailContentInput } from "@/core/custom-fields/email-content";
+import { FontFamilySelector } from "@/core/custom-fields/font-family-selector";
 
 export const EmailContentFields: Fields<Partial<EmailContentProps>> = {
   text_color: {
@@ -26,19 +27,24 @@ export const EmailContentFields: Fields<Partial<EmailContentProps>> = {
     label: "Text Line Height",
   },
   text_font: {
-    type: "select",
-    label: "Text Font Family",
-    options: [
-      { label: "Arial", value: "Arial" },
-      { label: "Helvetica", value: "Helvetica" },
-      { label: "Times New Roman", value: "Times New Roman" },
-      { label: "Courier New", value: "Courier New" },
-    ],
+    type: "custom",
+    render: ({ value, onChange }) => {
+      return (
+        <FontFamilySelector
+          name="Text Font Family"
+          value={value || ""}
+          onChange={onChange}
+        />
+      );
+    },
   },
   text_font_weight: {
     type: "radio",
     label: "Text Font Weight",
-    options: [{ label: "Normal", value: "normal" }],
+    options: [
+      { label: "Normal", value: "normal" },
+      { label: "Bold", value: "bold" },
+    ],
   },
   text_font_style: {
     type: "radio",
