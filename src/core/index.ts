@@ -28,3 +28,12 @@ export interface PageProps {
   createdAt: string;
   published?: boolean;
 }
+
+export interface TypoProps {
+  font: string;
+  weight: string;
+  size: number;
+  lineHeight: number;
+  spacing: number;
+  align: string;
+}
