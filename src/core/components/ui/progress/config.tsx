@@ -20,7 +20,7 @@ export const ProgressFields: Fields<Partial<ProgressProps>> = {
 
 export const DefaultProps: Required<ProgressProps> = {
     hidden: "N",
-    color: "#0C7FDA",
+    color: "#FFFFFF",
     min: 60,
     max: 100
 };
