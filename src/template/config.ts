@@ -3,10 +3,12 @@ import { Flex, type FlexProps } from "@/core/components/layout/flex";
 import { Space, type SpaceProps } from "@/core/components/layout/space";
 import { Button, type ButtonProps } from "@/core/components/ui/button";
 import { Input, type InputProps } from "@/core/components/ui/input";
+import { Progress, type ProgressProps } from "@/core/components/ui/progress";
 
 export type UIProps = {
   Button: ButtonProps;
   Input: InputProps;
+  Progress: ProgressProps;
 };
 
 export type LayoutProps = {
@@ -28,6 +30,7 @@ export const UIComponents = [
   "Checkbox",
   "Radio",
   "Switch",
+  "Progress",
 ] as (keyof UIProps | keyof LayoutProps)[];
 
 export const CommonComponents = {
@@ -36,4 +39,5 @@ export const CommonComponents = {
   Space,
   Flex,
   Columns,
+  Progress,
 } as const;

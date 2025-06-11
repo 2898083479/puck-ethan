@@ -1,7 +1,7 @@
 "use client";
 
 import { merge } from "ts-deepmerge";
-import { type ButtonProps } from ".";
+import type { ButtonProps } from ".";
 import { DefaultProps } from "./config";
 
 interface Props extends Partial<ButtonProps> {

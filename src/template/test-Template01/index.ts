@@ -8,6 +8,9 @@ import {
 } from "../config";
 import type { TestTemplate01Props } from "./types";
 import { EmailContent } from "@/core/components/ui/email-content";
+import { Test } from "./components/test";
+import { CrowdItemCard } from "./components/crowd-item-card";
+import { DonationSuccess } from "./components/donation-success";
 
 export type BlockProps = {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -26,6 +29,9 @@ export const TestTemplate01Config: PuckConfig = {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     ...(CommonComponents as any),
     EmailContent,
+    Test,
+    CrowdItemCard,
+    DonationSuccess,
   },
   categories: {
     Layout: {
@@ -35,7 +41,7 @@ export const TestTemplate01Config: PuckConfig = {
       components: UIComponents,
     },
     Blocks: {
-      components: ["EmailContent"],
+      components: ["EmailContent", "Test", "CrowdItemCard", "DonationSuccess"],
     },
   },
 };
