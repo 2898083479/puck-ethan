@@ -30,10 +30,10 @@ export interface PageProps {
 }
 
 export interface TypoProps {
-  font: string;
-  weight: string;
-  size: number;
-  lineHeight: number;
-  spacing: number;
-  align: string;
+  font?: string;
+  weight?: string;
+  size?: string;
+  lineHeight?: number;
+  spacing?: number;
+  align?: string;
 }

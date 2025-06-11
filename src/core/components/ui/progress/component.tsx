@@ -2,18 +2,14 @@ import { merge } from "ts-deepmerge";
 import type { ProgressProps } from ".";
 import { DefaultProps } from "./config";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface Props extends Partial<ProgressProps> {
-    isEditing: boolean;
+    isEditing?: boolean;
+    className?: string;
 }
 
-const getColor = (percentage: number) => {
-    if (percentage < 50) return "#FFFFFF";
-    if (percentage >= 50) return "#50BBE9";
-    if (percentage === 100) return "#B64C00";
-};
-
-export const Component = ({ isEditing, ...props }: Props) => {
+export const Component = ({ isEditing, className, ...props }: Props) => {
     const {
         hidden,
         color,
@@ -21,14 +17,12 @@ export const Component = ({ isEditing, ...props }: Props) => {
         max
     } = merge(DefaultProps, props) as ProgressProps;
 
-    const [value, setValue] = useState(min);
-
     const percentage = min / max * 100;
 
     if (hidden === "Y" && !isEditing) return <></>;
 
     return (
-        <div style={{ width: "256px" }}>
+        <div className={cn("w-full", className)}>
             <div
                 style={{
                     height: "32px",
@@ -36,7 +30,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                     border: "1px solid #E0E0E0",
                     position: "relative",
                     overflow: "hidden",
-                    backgroundColor: "#a0d2ee" // 背景色
+                    backgroundColor: `rgba(${color}, 0.5)`, // 背景色
                 }}
             >
                 {/* 进度条填充部分 - 移除transition动画 */}
@@ -55,16 +49,17 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 {/* 进度文字 */}
                 <div style={{
                     position: "absolute",
-                    color: getColor(percentage),
+                    color: `${color}`,
                     width: "100%",
                     height: "100%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    fontWeight: "bold",
                 }}>
                     {percentage}% {/* 固定百分比文字 */}
                 </div>
             </div>
         </div>
     )
-}
+};

@@ -26,7 +26,7 @@ export const Typography = ({ name, value, onChange }: Props) => {
                 </div>
                 <div>
                     <div>Size:</div>
-                    <Input value={value.size} onChange={(e) => onChange({ ...value, size: Number(e.target.value) })} />
+                    <Input value={value.size} onChange={(e) => onChange({ ...value, size: e.target.value })} />
                 </div>
                 <div>
                     <div>Line Height:</div>
