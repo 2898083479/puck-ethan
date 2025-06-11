@@ -1,11 +1,11 @@
-import type { DonationSuccessProps } from ".";
 import { merge } from "ts-deepmerge";
-import { DefaultProps } from "../test/config";
+import type { DonationFailedProps } from ".";
+import { DefaultProps } from "./config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-export interface Props extends DonationSuccessProps {
+export interface Props extends DonationFailedProps {
     isEditing: boolean;
 }
 
@@ -14,7 +14,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
         hidden,
         primary,
         font,
-    } = merge(DefaultProps, props) as DonationSuccessProps;
+    } = merge(DefaultProps, props) as DonationFailedProps;
 
     if (hidden === "Y" && !isEditing) return <></>;
 
@@ -35,9 +35,9 @@ export const Component = ({ isEditing, ...props }: Props) => {
             } as React.CSSProperties}
         >
             <div
-                className="flex flex-col items-center"
+                className="w-full flex flex-col items-center"
                 style={{
-                    maxWidth: "768px",
+                    maxWidth: "500px",
                     borderRadius: "12px",
                     padding: "32px",
                     gap: "32px",
@@ -45,43 +45,36 @@ export const Component = ({ isEditing, ...props }: Props) => {
             >
                 <div>
                     <img
-                        src="/images/donation-success.png"
-                        alt="Donation Success"
-                        className="aspect-auto"
+                        src="/images/donation-failed.png"
+                        alt="Donation Failed"
+                        style={{
+                            width: "150px",
+                            aspectRatio: "9/8",
+                        }}
                     />
                 </div>
                 <div
                     style={{
                         fontSize: "var(--font-size)",
                         fontWeight: "var(--font-weight)",
-                        color: "var(--primary)",
-                    }}
-                >
-                    您已成功捐款 HK$ 860
-                </div>
-                <div
-                    style={{
-                        fontSize: "calc(var(--font-size) - 19px)",
-                        fontWeight: "var(--font-weight)",
                         textAlign: "var(--font-align)" as "left" | "center" | "right",
                     }}
                 >
-                    <p>系統已發送電郵紀錄</p>
-                    <p>捐款時間：11/07/2023 04:00 PM</p>
-                    <p>Ref.No. 1234567890</p>
+                    捐款失敗
                 </div>
                 <Button
-                    className="w-full justify-between items-center"
+                    className="w-full items-center justify-between"
                     style={{
-                        backgroundColor: "var(--primary)",
-                        color: "white",
-                        height: "82px",
-                        fontSize: "calc(var(--font-size) - 19px)",
+                        color: "var(--primary)",
+                        height: "45px",
+                        fontSize: "calc(var(--font-size) - 12px)",
                         fontWeight: "var(--font-weight)",
-                        borderRadius: "12px",
+                        borderColor: "var(--primary)",
+                        borderWidth: "1px",
+                        borderStyle: "solid",
                     }}
                 >
-                    返回首頁 <ArrowRight size={18} />
+                    返回上一頁 <ArrowRight size={18} />
                 </Button>
             </div>
         </div>
