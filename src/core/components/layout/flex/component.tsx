@@ -9,15 +9,23 @@ interface Props extends Partial<FlexProps> {
 }
 
 export const Component = ({ isEditing, ...props }: Props) => {
-  const { hidden, maxWidth, align, gap, padding, background, fillHeight } =
-    merge(DefaultProps, props) as FlexProps;
+  const {
+    hidden,
+    maxWidth,
+    align,
+    gap,
+    padding,
+    background,
+    fillHeight,
+    flex,
+  } = merge(DefaultProps, props) as FlexProps;
 
   if (hidden === "Y" && !isEditing) return <></>;
 
   return (
     <div
       className={cn(
-        "w-full flex items-center justify-center relative",
+        "w-full flex items-center relative",
         hidden === "Y" && "opacity-50",
         fillHeight === "Y" && "min-h-svh",
       )}
@@ -44,9 +52,11 @@ export const Component = ({ isEditing, ...props }: Props) => {
         >
           <DropZone
             zone="flex"
-            className="flex flex-col"
+            className="flex"
             style={{
               gap: `${gap}px`,
+              flexDirection: flex === "row" ? "row" : "column",
+              justifyContent: align,
             }}
           />
         </div>

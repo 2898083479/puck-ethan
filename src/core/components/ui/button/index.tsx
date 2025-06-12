@@ -4,7 +4,15 @@ import { ComponentFields } from "./config";
 import { Component } from "./component";
 import { DefaultProps } from "./config";
 
-export interface ButtonProps extends BasicProps {}
+export interface ButtonProps extends BasicProps {
+  label: string;
+  url: string;
+  fontSize: string;
+  primary: string;
+  background: string;
+  width: string;
+  height: string;
+}
 
 export const Button: ComponentConfig<Partial<ButtonProps>> = {
   label: "Button",
