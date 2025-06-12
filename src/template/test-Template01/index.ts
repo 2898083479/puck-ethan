@@ -14,6 +14,8 @@ import { DonationSuccess } from "./components/donation-success";
 import { DonationFailed } from "./components/donation-failed";
 import { FindPassword } from "./components/find-password";
 import { SendEmail } from "./components/send-email";
+import { Login } from "./components/login";
+import { LoginSuccess } from "./components/login-success";
 
 export type BlockProps = {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -38,6 +40,8 @@ export const TestTemplate01Config: PuckConfig = {
     DonationFailed,
     FindPassword,
     SendEmail,
+    Login,
+    LoginSuccess,
   },
   categories: {
     Layout: {
@@ -54,7 +58,8 @@ export const TestTemplate01Config: PuckConfig = {
         "DonationSuccess",
         "DonationFailed",
         "FindPassword",
-        "SendEmail"
+        "SendEmail",
+        "Login"
       ],
     },
   },
