@@ -1,17 +1,17 @@
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 
 interface Props extends React.ComponentProps<"input"> {
   startContent?: React.ReactNode;
+  endContent?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ startContent, className, type, ...props }, ref) => {
+  ({ startContent, endContent, className, type, ...props }, ref) => {
     return (
       <div className="relative">
         {startContent && (
-          <div className="absolute left-2 top-1/2 -translate-y-1/2">
+          <div className="absolute left-2 top-1/2 -translate-y-1/2 flex items-center">
             {startContent}
           </div>
         )}
@@ -24,6 +24,11 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           ref={ref}
           {...props}
         />
+        {endContent && (
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center">
+            {endContent}
+          </div>
+        )}
       </div>
     );
   },

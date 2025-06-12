@@ -20,6 +20,14 @@ export const ComponentFields: Fields<Partial<FlexProps>> = {
       { label: "Right", value: "right" },
     ],
   },
+  flex: {
+    label: "Flex",
+    type: "radio",
+    options: [
+      { label: "Row", value: "row" },
+      { label: "Column", value: "column" },
+    ],
+  },
   gap: {
     label: "Gap",
     type: "number",
@@ -63,5 +71,6 @@ export const DefaultProps: Required<FlexProps> = {
   gap: 0,
   background: "",
   fillHeight: "N",
-  padding: { x: 0, y: 0 },
+  padding: { x: "0", y: "0" },
+  flex: "row",
 };
