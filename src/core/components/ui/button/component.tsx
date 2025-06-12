@@ -42,13 +42,14 @@ export const Component = ({ isEditing, ...props }: Props) => {
     >
       <Button
         asChild
-        className="w-full h-full"
+        className="w-full h-full border"
         style={{
           borderColor: "var(--primary)",
           backgroundColor: "var(--background)",
           width: "var(--width)",
           height: "var(--height)",
           fontSize: "var(--font-size)",
+          color: "var(--primary)",
         }}
       >
         <Link href={url}>{label}</Link>

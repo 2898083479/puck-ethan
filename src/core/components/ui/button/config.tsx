@@ -40,8 +40,8 @@ export const DefaultProps: Required<ButtonProps> = {
   // other props
   label: "Button",
   url: "https://www.google.com/",
-  primary: "#50BBE9",
-  background: "#50BBE9",
+  primary: "#1D1D1D",
+  background: "#FFFFFF",
   width: "720",
   height: "63",
   fontSize: "16",
