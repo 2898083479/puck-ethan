@@ -13,6 +13,7 @@ import { CrowdItemCard } from "./components/crowd-item-card";
 import { DonationSuccess } from "./components/donation-success";
 import { DonationFailed } from "./components/donation-failed";
 import { FindPassword } from "./components/find-password";
+import { SendEmail } from "./components/send-email";
 
 export type BlockProps = {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -36,6 +37,7 @@ export const TestTemplate01Config: PuckConfig = {
     DonationSuccess,
     DonationFailed,
     FindPassword,
+    SendEmail,
   },
   categories: {
     Layout: {
@@ -45,7 +47,15 @@ export const TestTemplate01Config: PuckConfig = {
       components: UIComponents,
     },
     Blocks: {
-      components: ["EmailContent", "Test", "CrowdItemCard", "DonationSuccess", "DonationFailed", "FindPassword"],
+      components: [
+        "EmailContent",
+        "Test",
+        "CrowdItemCard",
+        "DonationSuccess",
+        "DonationFailed",
+        "FindPassword",
+        "SendEmail"
+      ],
     },
   },
 };
