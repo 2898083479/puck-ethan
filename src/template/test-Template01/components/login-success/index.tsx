@@ -15,4 +15,4 @@ export const LoginSuccess: ComponentConfig<LoginSuccessProps> = {
     render: ({puck: {isEditing}, ...props}) => {
         return <Component isEditing={isEditing} {...props} />;
     }
-}
+};

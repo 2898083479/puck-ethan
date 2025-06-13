@@ -36,4 +36,5 @@ export interface TypoProps {
   lineHeight?: number;
   spacing?: number;
   align?: string;
+  decoration?: string;
 }
