@@ -8,6 +8,7 @@ interface Props extends Partial<PreCrowdProps> {
     isEditing: boolean;
 }
 
+
 export const Component = ({ isEditing, ...props }: Props) => {
     const {
         hidden,

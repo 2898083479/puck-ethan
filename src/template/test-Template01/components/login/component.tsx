@@ -12,7 +12,6 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage
 } from "@/components/ui/form";
 import { z } from "zod";
@@ -20,6 +19,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ArrowRightIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Contants } from "./contants";
+import { useCurrentLocale } from "@/locales";
 
 interface Props extends Partial<LoginProps> {
     isEditing: boolean;
@@ -27,9 +28,9 @@ interface Props extends Partial<LoginProps> {
 
 export const Component = ({ isEditing, ...props }: Props) => {
     const router = useRouter();
+    const lang = useCurrentLocale();
     const {
         hidden,
-        title,
         primary,
         fontSize,
         signupUrl,
@@ -99,7 +100,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         fontWeight: "bold",
                     }}
                 >
-                    {title}
+                    {Contants.title[lang]}
                 </div>
                 <Form {...form}>
                     <form
@@ -114,11 +115,11 @@ export const Component = ({ isEditing, ...props }: Props) => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Label isRequired>電郵</Label>
+                                    <Label isRequired>{Contants.email_label[lang]}</Label>
                                     <FormControl>
                                         <Input
                                             {...field}
-                                            placeholder="Email"
+                                            placeholder={Contants.placeholder[lang]}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -130,11 +131,11 @@ export const Component = ({ isEditing, ...props }: Props) => {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Label isRequired>密碼</Label>
+                                    <Label isRequired>{Contants.password_label[lang]}</Label>
                                     <FormControl>
                                         <Input
                                             {...field}
-                                            placeholder="Password"
+                                            placeholder={Contants.placeholder[lang]}
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -151,7 +152,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                 padding: "32px 24px",
                             }}
                         >
-                            登錄 <ArrowRightIcon size={20} />
+                            {Contants.login_button[lang]} <ArrowRightIcon size={20} />
                         </Button>
                     </form>
                 </Form>
@@ -166,13 +167,13 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         className="cursor-pointer"
                         onClick={() => router.push(signupUrl)}
                     >
-                        新用戶註冊
+                        {Contants.signup_button[lang]}
                     </span>
                     <span
                         className="cursor-pointer"
                         onClick={() => router.push(forgotPasswordUrl)}
                     >
-                        忘記密碼
+                        {Contants.forgot_password_button[lang]}
                     </span>
                 </div>
             </div>

@@ -4,12 +4,15 @@ import { DefaultProps } from "./config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Contants } from "./contants";
+import { useCurrentLocale } from "@/locales";
 
 export interface Props extends DonationFailedProps {
     isEditing: boolean;
 }
 
 export const Component = ({ isEditing, ...props }: Props) => {
+    const lang = useCurrentLocale();
     const {
         hidden,
         primary,
@@ -60,7 +63,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         textAlign: "var(--font-align)" as "left" | "center" | "right",
                     }}
                 >
-                    捐款失敗
+                    {Contants.title[lang]}
                 </div>
                 <Button
                     className="w-full items-center justify-between"
@@ -74,7 +77,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         borderStyle: "solid",
                     }}
                 >
-                    返回上一頁 <ArrowRight size={18} />
+                    {Contants.button[lang]} <ArrowRight size={18} />
                 </Button>
             </div>
         </div>

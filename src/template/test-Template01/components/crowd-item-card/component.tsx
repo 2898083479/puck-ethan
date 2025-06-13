@@ -4,13 +4,23 @@ import { merge } from "ts-deepmerge";
 import { cn } from "@/lib/utils";
 import { Component as ProgressComponent } from "@/core/components/ui/progress/component";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar";
+import { Contants } from "./constants";
+import { useCurrentLocale } from "@/locales";
+import { MockData } from "./mock";
 
 export interface Props extends CrowdItemCardProps {
     isEditing: boolean;
 }
 
 export const Component = ({ isEditing, ...props }: Props) => {
+
+    const lang = useCurrentLocale();
+
     const {
         title,
         description,
@@ -46,9 +56,9 @@ export const Component = ({ isEditing, ...props }: Props) => {
             } as React.CSSProperties}
         >
             <div
-                className="flex flex-col shadow-lg"
+                className="flex flex-col shadow-lg w-full"
                 style={{
-                    width: "414px",
+                    maxWidth: "414px",
                     borderRadius: rounded,
                     gap: "20px",
                     paddingTop: "25px",
@@ -78,7 +88,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     fontFamily: "var(--title-font-font)",
                                 }}
                             >
-                                某歌迷会
+                                {MockData.team}
                             </span>
                             发起
                         </div>
@@ -88,7 +98,9 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                 fontWeight: "var(--title-font-weight)",
                                 fontFamily: "var(--title-font-font)",
                             }}
-                        >演唱会应援物资义卖</div>
+                        >
+                            {MockData.event}
+                        </div>
                     </div>
                 </div>
                 <div
@@ -112,11 +124,11 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         >
                             HK$ 65,000
                         </div>
-                        <div style={{ fontSize: `${Number(titleFont.size) - 6}px` }}>现已筹集善款（港幣）</div>
+                        <div style={{ fontSize: `${Number(titleFont.size) - 6}px` }}>{Contants.tip[lang]}</div>
                         <div><ProgressComponent min={60} max={100} color={color} /></div>
                     </div>
                 </div>
-                <div style={{ fontSize: "var(--title-font-size)" }}>截止時間：2025年6月8日</div>
+                <div style={{ fontSize: "var(--title-font-size)" }}>{Contants.deadline[lang]}: 2025年6月8日</div>
                 <Button
                     style={{
                         backgroundColor: color,
@@ -128,7 +140,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         padding: "16px",
                     }}
                 >
-                    捐款支持
+                    {Contants.button[lang]}
                 </Button>
             </div>
         </div>

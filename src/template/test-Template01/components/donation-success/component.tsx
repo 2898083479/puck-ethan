@@ -4,12 +4,15 @@ import { DefaultProps } from "../test/config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Contants } from "./contants";
+import { useCurrentLocale } from "@/locales";
 
 export interface Props extends DonationSuccessProps {
     isEditing: boolean;
 }
 
 export const Component = ({ isEditing, ...props }: Props) => {
+    const lang = useCurrentLocale();
     const {
         hidden,
         primary,
@@ -57,7 +60,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         color: "var(--primary)",
                     }}
                 >
-                    您已成功捐款 HK$ 860
+                    {Contants.title[lang]} HK$ 860
                 </div>
                 <div
                     style={{
@@ -66,8 +69,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         textAlign: "var(--font-align)" as "left" | "center" | "right",
                     }}
                 >
-                    <p>系統已發送電郵紀錄</p>
-                    <p>捐款時間：11/07/2023 04:00 PM</p>
+                    <p>{Contants.description[lang]}</p>
+                    <p>{Contants.donationTime[lang]}: 11/07/2023 04:00 PM</p>
                     <p>Ref.No. 1234567890</p>
                 </div>
                 <Button
@@ -81,7 +84,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         borderRadius: "12px",
                     }}
                 >
-                    返回首頁 <ArrowRight size={18} />
+                    {Contants.button[lang]} <ArrowRight size={18} />
                 </Button>
             </div>
         </div>

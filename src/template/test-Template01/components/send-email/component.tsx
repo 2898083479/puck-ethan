@@ -2,12 +2,15 @@ import { merge } from "ts-deepmerge";
 import type { SendEmailProps } from ".";
 import { DefaultProps } from "./config";
 import { cn } from "@/lib/utils";
+import { Contants } from "./contants";
+import { useCurrentLocale } from "@/locales";
 
 interface Props extends Partial<SendEmailProps> {
     isEditing: boolean;
 }
 
 export const Component = ({ isEditing, ...props }: Props) => {
+    const lang = useCurrentLocale();
     const {
         hidden,
         fontSize,
@@ -49,7 +52,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         color: "var(--primary)"
                     }}
                 >
-                    已重新發送密碼至電子郵箱
+                    {Contants.title[lang]}
                 </div>
             </div>
         </div>

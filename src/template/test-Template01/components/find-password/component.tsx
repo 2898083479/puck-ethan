@@ -86,7 +86,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                         }}
                     />
                 </div>
-                <div style={{ fontSize: "var(--font-size)" }}>找回我的密碼</div>
+                <div style={{ fontSize: "var(--font-size)" }}>{Contants.title[lang]}</div>
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
