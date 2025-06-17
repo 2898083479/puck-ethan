@@ -5,6 +5,7 @@ import type { ComponentConfig } from "@measured/puck";
 
 export interface LoginSuccessProps extends BasicProps {
     title: string;
+    image: string;
     primary: string;
 };
 

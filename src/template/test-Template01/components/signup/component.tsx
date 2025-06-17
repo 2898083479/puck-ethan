@@ -15,6 +15,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCurrentLocale } from "@/locales";
+import { cn } from "@/lib/utils";
 
 interface Props extends SignupProps {
     isEditing: boolean;
@@ -91,24 +92,22 @@ export const Component = ({ isEditing, ...props }: Props) => {
             } as React.CSSProperties}
         >
             <div
-                className="flex flex-col w-full "
+                className="flex flex-col w-full pt-12 pb-8 px-8"
                 style={{
                     position: "relative",           //父容器設為relative，讓子元素可以absolute定位
                     maxWidth: "768px",
-                    padding: "32px 32px 48px 32px", //預留頂部空間
                     borderRadius: "16px",
                     border: "1px solid #FFDE59",
-                    marginTop: "30px",              //防止標題被截斷
+                    marginTop: "30px",
                 }}
             >
                 <div
-                    className="rounded-full"
+                    className="rounded-full py-3 px-6"
                     style={{
                         position: "absolute",
-                        top: "-40px",
+                        top: "-50px",
                         left: "20px",
                         backgroundColor: "#FFDE59",
-                        padding: "24px 12px",
                         fontSize: "var(--font-size)",
                         fontWeight: "var(--font-weight)",
                     }}
@@ -118,12 +117,21 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onHandleSubmit)}
-                        className="flex flex-col w-full max-w-2xl mx-auto"
+                        className="flex flex-col w-full gap-8"
                         style={{
-                            gap: "32px"
+                            fontSize: "calc(var(--font-size) - 12px)"
                         }}
                     >
-                        <div>請為您的項目頁面，設立登入名稱及密碼</div>
+                        <div
+                            className={cn(
+                                "font-semibold underline",
+                            )}
+                            style={{
+                                fontSize: "calc(var(--font-size) - 6px)"
+                            }}
+                        >
+                            請為您的項目頁面，設立登入名稱及密碼
+                        </div>
                         <FormField
                             control={form.control}
                             name="email"
@@ -163,7 +171,14 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                 </FormItem>
                             )}
                         />
-                        <div>聯絡人</div>
+                        <div
+                            className="font-semibold underline"
+                            style={{
+                                fontSize: "calc(var(--font-size) - 6px)"
+                            }}
+                        >
+                            聯絡人
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <FormField
                                 control={form.control}

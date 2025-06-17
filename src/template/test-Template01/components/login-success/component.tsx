@@ -11,6 +11,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
     const {
         hidden,
         title,
+        image,
         primary
     } = merge(DefaultProps, props) as LoginSuccessProps;
 
@@ -35,13 +36,9 @@ export const Component = ({ isEditing, ...props }: Props) => {
             >
                 <div>
                     <img
-                        src="/images/donation-failed.png"
+                        src={image}
                         alt="send-email"
-                        className="object-cover"
-                        style={{
-                            width: "300px",
-                            aspectRatio: "9/8"
-                        }}
+                        className="object-cover w-[196px] aspect-auto"
                     />
                 </div>
                 <div

@@ -8,6 +8,10 @@ export const LoginSuccessFields: Fields<LoginSuccessProps> = {
         type: "text",
         label: "Title"
     },
+    image: {
+        type: "text",
+        label: "Image"
+    },
     primary: {
         type: "text",
         label: "Primary"
@@ -17,5 +21,6 @@ export const LoginSuccessFields: Fields<LoginSuccessProps> = {
 export const DefaultProps: Required<LoginSuccessProps> = {
     hidden: "N",
     title: "登錄成功",
+    image: "/images/donation-failed.png",
     primary: "#000000"
 }
