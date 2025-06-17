@@ -102,6 +102,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 }}
             >
                 <div
+                    className="rounded-full"
                     style={{
                         position: "absolute",
                         top: "-40px",
@@ -117,7 +118,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onHandleSubmit)}
-                        className="flex flex-col"
+                        className="flex flex-col w-full max-w-2xl mx-auto"
                         style={{
                             gap: "32px"
                         }}
@@ -163,14 +164,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                             )}
                         />
                         <div>聯絡人</div>
-                        <div
-                            className="grid grid-cols-2 gap-4 md:grid-cols-1"
-                            style={{
-                                display: "grid",
-                                gridTemplateColumns: "repeat(2, 1fr)", // 默认一行两列
-                                gap: "16px", // 列间距
-                            }}
-                        >
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <FormField
                                 control={form.control}
                                 name="name"
