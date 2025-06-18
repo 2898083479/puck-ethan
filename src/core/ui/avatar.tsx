@@ -1,4 +1,4 @@
-import { LoaderIcon, PencilIcon, PlusIcon } from "lucide-react";
+import { LoaderIcon, PencilIcon, PlusIcon, ImageUp } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -13,11 +13,13 @@ export const UploadImage = ({
     value,
     imageAccessUrl,
     flag,
+    className,
     onChange
 }: {
     value: string;
     imageAccessUrl: string;
     flag: "avatar" | "background"
+    className?: string,
     onChange: (props: { filePath: string; accessUrl?: string }) => void;
 }) => {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -60,8 +62,8 @@ export const UploadImage = ({
         <div
             className="shrink-0 rounded-2xl overflow-hidden border border-border relative"
             style={{
-                width: flag === "avatar" ? "250px" : "413px",
-                height: flag === "avatar" ? "250px" : "704px",
+                maxWidth: flag === "avatar" ? "250px" : "740px",
+                height: flag === "avatar" ? "250px" : "413px",
             }}
         >
             <div className="flex items-center justify-center w-full h-full">
@@ -101,7 +103,10 @@ export const UploadImage = ({
                                     </div>
                                 ) : (
                                     <div
-                                        className="flex items-center justify-center w-full h-full bg-black text-white cursor-pointer"
+                                        className="flex items-center justify-center w-full h-full cursor-pointer bg-[#F8FAFC]"
+                                        style={{
+                                            border: "3px dashed #94A3B8"
+                                        }}
                                         onClick={() => {
                                             document.getElementById(
                                                 `avatar-upload=${randomId}`,
@@ -109,7 +114,19 @@ export const UploadImage = ({
                                                 ?.click();
                                         }}
                                     >
-                                        <PlusIcon className="size-12" />
+                                        <div className="flex flex-col items-center justify-center text-[#94A3B8]">
+                                            <ImageUp size={25} />
+                                            {
+                                                flag === "avatar" ? (
+                                                    <>
+                                                        <p>建议上传尺寸：</p>
+                                                        <p>800*800， 小于 2MB</p>
+                                                    </>
+                                                ) : (
+                                                    <p>建议上传尺寸：1920*1080， 小于 5MB</p>
+                                                )
+                                            }
+                                        </div>
                                     </div>
                                 )
                             }
@@ -148,8 +165,8 @@ const Avatar = ({
                 isActive && "border-[#090909]",
             )}
             style={{
-                width: flag === "avatar" ? "250px" : "413px",
-                height: flag === "avatar" ? "250px" : "704px",
+                width: flag === "avatar" ? "clamp(172px, 50vw, 250px)" : "clamp(311px, 90vw, 704px)",
+                height: flag === "avatar" ? "clamp(172px, 50vw, 250px)" : "clamp(209px, 90vw, 413px)",
             }}
             onClick={onClick}
         >
