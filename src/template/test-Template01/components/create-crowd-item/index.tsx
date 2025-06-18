@@ -2,11 +2,13 @@ import type { BasicProps } from "@/core/components/types";
 import { CreateCrowdConfig, DefaultProps } from "./config";
 import { Component } from "./component";
 import type { ComponentConfig } from "@measured/puck";
+import type { TypoProps } from "@/core";
 
 export interface CreateCrowdProps extends Partial<BasicProps> {
-    fontSize: string;
+    title: string;
     backBtn: string;
     finBtn: string;
+    typo: TypoProps;
 };
 
 export const CreateCrowd: ComponentConfig<CreateCrowdProps> = {

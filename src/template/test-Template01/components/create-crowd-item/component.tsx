@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronDown } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { ChevronDown, CircleChevronRight } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import {
     Popover,
@@ -25,6 +26,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { useState } from "react";
 import { UploadImage } from "@/core/ui/avatar";
+import { Label } from "@/core/ui/label";
 
 interface Props extends CreateCrowdProps {
     isEditing: boolean;
@@ -37,9 +39,10 @@ export const Component = ({ isEditing, ...props }: Props) => {
 
     const {
         hidden,
-        fontSize,
         backBtn,
-        finBtn
+        finBtn,
+        typo,
+        title
     } = merge(DefaultProps, props) as CreateCrowdProps;
 
     const itemSchema = z.object({
@@ -98,8 +101,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 chineseName: "",
                 englishName: "",
                 datetime: {
-                    from: undefined,
-                    to: undefined
+                    from: new Date(),
+                    to: new Date()
                 },
                 crowdObject: 0,
             },
@@ -129,207 +132,258 @@ export const Component = ({ isEditing, ...props }: Props) => {
     return (
         <div
             className={cn(
-                "flex w-full",
+                "flex w-full items-center justify-center py-10 px-10",
                 hidden === "Y" && "opacity-50"
             )}
+            style={{
+                "--back-btn": backBtn,
+                "--fin-btn": finBtn,
+                "--font-weight": typo.weight,
+                "--font-size": typo.size,
+                "--font-line-height": typo.lineHeight,
+                "--font-spacing": typo.spacing,
+                "--font-align": typo.align,
+                "--font-decoration": typo.decoration
+            } as React.CSSProperties}
         >
-            <Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(onHandleSubmit)}
-                    className="flex flex-col w-full"
-                    style={{
-                        "--font-size": `${fontSize}px`
-                    } as React.CSSProperties}
-                >
-                    <div>
-                        筹款项目内容
+            <div className="max-w-[798px] w-full">
+                <div className="relative flex flex-col items-center gap-4 sm:gap-8 px-4 pb-4 sm:pb-8 sm:px-8 sm:py-12 bg-white rounded-3xl border border-red-400">
+                    <div className="initial inline-block sm:absolute translate-y-[-40px] sm:translate-y-[unset] sm:top-[-32px] sm:left-[32px] px-6 py-3 bg-blue-200 rounded-[44px] z-10">
+                        <span
+                            className={cn(
+                                "text-center text-2xl sm:text-3xl leading-none sm:leading-[130%] font-normal",
+                            )}
+                        >
+                            {title}
+                        </span>
                     </div>
-                    <div>
-                        <FormField
-                            control={form.control}
-                            name="item.chineseName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>中文名称</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="请输入"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="item.englishName"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>英文名称（如适用，以30个字母为上限）</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="请输入"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="item.datetime"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>起止日期（日期最少间隔两个星期）</FormLabel>
-                                    <Popover>
-                                        <PopoverTrigger asChild>
+                    <Form {...form}>
+                        <form
+                            onSubmit={form.handleSubmit(onHandleSubmit)}
+                            className="max-x-[700px] flex flex-col w-full justify-center gap-8"
+                        >
+                            <div
+                                className="text-[16px] sm:text-[24px]"
+                                style={{
+                                    fontWeight: "var(--font-weight)",
+                                    textDecoration: "var(--font-decoration)"
+                                }}
+                            >
+                                筹款项目内容
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <FormField
+                                    control={form.control}
+                                    name="item.chineseName"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired size="md">中文名称</Label>
                                             <FormControl>
-                                                <Button
-                                                    variant={"outline"}
-                                                    className={cn(
-                                                        "w-[240px] pl-3 text-left font-normal",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value ? (
-                                                        `${format(field.value.from, "yyyy-MM-dd")} - ${format(field.value.to, "yyyy-MM-dd")}`
-                                                    ) : (
-                                                        <span>Pick a date</span>
-                                                    )}
-                                                    <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
-                                                </Button>
+                                                <Input
+                                                    {...field}
+                                                    placeholder="请输入"
+                                                />
                                             </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-auto p-0" align="start">
-                                            <Calendar
-                                                mode="single"
-                                                numberOfMonths={2}
-                                                selected={field.value.from}
-                                                onSelect={field.onChange}
-                                                disabled={(date) =>
-                                                    date > new Date() || date < new Date("1900-01-01")
-                                                }
-                                                captionLayout="dropdown"
-                                            />
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="item.crowdObject"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>筹款目标（港币）</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="请输入"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <div>请提供充足的内容，将有助于您的项目获得更多的捐款！</div>
-                    <div>
-                        <FormField
-                            control={form.control}
-                            name="desc.chineseDesc"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>中文</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="请输入"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="desc.englishDesc"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>英文（如适用）</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="请输入"
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <div>
-                        别忘记为页面添加更具风格的视觉效果
-                    </div>
-                    <div>
-                        <FormField
-                            control={form.control}
-                            name="image.avatar"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>头像</FormLabel>
-                                    <FormControl>
-                                        <UploadImage
-                                            value={field.value.filePath}
-                                            imageAccessUrl={form.getValues("image.avatar.avatarAccessUrl")}
-                                            flag="avatar"
-                                            onChange={(file) => {
-                                                field.onChange(file?.filePath);
-                                                form.setValue(
-                                                    "image.avatar.avatarAccessUrl",
-                                                    file?.accessUrl || "",
-                                                );
-                                            }}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="image.background"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>项目背景图片</FormLabel>
-                                    <FormControl>
-                                        <UploadImage
-                                            value={field.value.filePath}
-                                            imageAccessUrl={form.getValues("image.background.backgroundAccessUrl")}
-                                            flag="background"
-                                            onChange={(file) => {
-                                                field.onChange(file?.filePath);
-                                                form.setValue(
-                                                    "image.background.backgroundAccessUrl",
-                                                    file?.accessUrl || "",
-                                                );
-                                            }}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <div className="flex flex-row justify-between">
-                        <Button>返回上一页</Button>
-                        <Button>完成并预览</Button>
-                    </div>
-                </form>
-            </Form>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="item.englishName"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label>英文名称（如适用，以30个字母为上限）</Label>
+                                            <FormControl>
+                                                <Input
+                                                    {...field}
+                                                    placeholder="请输入"
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="item.datetime"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col">
+                                            <Label isRequired>起止日期（日期最少间隔两个星期）</Label>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <FormControl>
+                                                        <Button
+                                                            variant="outline"
+                                                            className={cn(
+                                                                "text-left font-normal w-full",
+                                                                !field.value && "text-muted-foreground"
+                                                            )}
+                                                        >
+                                                            {field.value ? (
+                                                                `${format(field.value.from, "yyyy/MM/dd")} - ${format(field.value.to, "yyyy/MM/dd")}`
+                                                            ) : (
+                                                                <span>Pick a date</span>
+                                                            )}
+                                                            <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
+                                                        </Button>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0" align="start">
+                                                    <Calendar
+                                                        mode="single"
+                                                        numberOfMonths={2}
+                                                        selected={field.value.from}
+                                                        onSelect={field.onChange}
+                                                        disabled={(date) =>
+                                                            date > new Date() || date < new Date("1900-01-01")
+                                                        }
+                                                        captionLayout="dropdown"
+                                                    />
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="item.crowdObject"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired>筹款目标（港币）</Label>
+                                            <FormControl>
+                                                <Input
+                                                    {...field}
+                                                    placeholder="请输入"
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            <div
+                                className="text-[16px] sm:text-[24px]"
+                                style={{
+                                    fontWeight: "var(--font-weight)",
+                                    textDecoration: "var(--font-decoration)"
+                                }}
+                            >
+                                请提供充足的内容，将有助于您的项目获得更多的捐款！
+                            </div>
+                            <div className="flex flex-col gap-8">
+                                <FormField
+                                    control={form.control}
+                                    name="desc.chineseDesc"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired>中文</Label>
+                                            <FormControl>
+                                                <Textarea
+                                                    className="h-[180px] resize-none"
+                                                    {...field}
+                                                    placeholder="请输入"
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="desc.englishDesc"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label>英文（如适用）</Label>
+                                            <FormControl>
+                                                <Textarea
+                                                    className="h-[180px] resize-none"
+                                                    {...field}
+                                                    placeholder="请输入"
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            <div
+                                className="text-[16px] sm:text-[24px]"
+                                style={{
+                                    fontWeight: "var(--font-weight)",
+                                    textDecoration: "var(--font-decoration)"
+                                }}
+                            >
+                                别忘记为页面添加更具风格的视觉效果
+                            </div>
+                            <div className="flex flex-col gap-8">
+                                <FormField
+                                    control={form.control}
+                                    name="image.avatar"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired>头像</Label>
+                                            <FormControl>
+                                                <UploadImage
+                                                    value={field.value.filePath}
+                                                    imageAccessUrl={form.getValues("image.avatar.avatarAccessUrl")}
+                                                    flag="avatar"
+                                                    onChange={(file) => {
+                                                        field.onChange(file?.filePath);
+                                                        form.setValue(
+                                                            "image.avatar.avatarAccessUrl",
+                                                            file?.accessUrl || "",
+                                                        );
+                                                    }}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="image.background"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired>项目背景图片</Label>
+                                            <FormControl>
+                                                <UploadImage
+                                                    value={field.value.filePath}
+                                                    imageAccessUrl={form.getValues("image.background.backgroundAccessUrl")}
+                                                    flag="background"
+                                                    onChange={(file) => {
+                                                        field.onChange(file?.filePath);
+                                                        form.setValue(
+                                                            "image.background.backgroundAccessUrl",
+                                                            file?.accessUrl || "",
+                                                        );
+                                                    }}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            <div className="flex flex-row justify-between">
+                                <Button
+                                    style={{ backgroundColor: "var(--back-btn)" }}
+                                >
+                                    返回上一页
+                                </Button>
+                                <Button
+                                    style={{ backgroundColor: "var(--fin-btn)" }}
+                                >
+                                    完成并预览<CircleChevronRight />
+                                </Button>
+                            </div>
+                        </form>
+                    </Form>
+                </div>
+            </div>
+
         </div>
     )
 }
