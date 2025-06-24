@@ -9,6 +9,7 @@ export interface CreateCrowdProps extends Partial<BasicProps> {
     backBtn: string;
     finBtn: string;
     typo: TypoProps;
+    flag: "create" | "edit";
 };
 
 export const CreateCrowd: ComponentConfig<CreateCrowdProps> = {

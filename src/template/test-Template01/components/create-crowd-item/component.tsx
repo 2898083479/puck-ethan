@@ -33,16 +33,13 @@ interface Props extends CreateCrowdProps {
 }
 
 export const Component = ({ isEditing, ...props }: Props) => {
-    const [date, setDate] = useState<Date | undefined>(
-        new Date(2025, 6, 1)
-    )
-
     const {
         hidden,
         backBtn,
         finBtn,
         typo,
-        title
+        title,
+        flag
     } = merge(DefaultProps, props) as CreateCrowdProps;
 
     const itemSchema = z.object({
@@ -146,7 +143,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 "--font-decoration": typo.decoration
             } as React.CSSProperties}
         >
-            <div className="max-w-[798px] w-full">
+            <div className="sm:max-w-[798px] w-full">
                 <div className="relative flex flex-col items-center gap-4 sm:gap-8 px-4 pb-4 sm:pb-8 sm:px-8 sm:py-12 bg-white rounded-3xl border border-red-400">
                     <div className="initial inline-block sm:absolute translate-y-[-40px] sm:translate-y-[unset] sm:top-[-32px] sm:left-[32px] px-6 py-3 bg-blue-200 rounded-[44px] z-10">
                         <span
@@ -163,9 +160,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                             className="max-x-[700px] flex flex-col w-full justify-center gap-8"
                         >
                             <div
-                                className="text-[16px] sm:text-[24px]"
+                                className="text-[16px] sm:text-[24px] font-[var(--font-weight)]"
                                 style={{
-                                    fontWeight: "var(--font-weight)",
                                     textDecoration: "var(--font-decoration)"
                                 }}
                             >
@@ -176,8 +172,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     control={form.control}
                                     name="item.chineseName"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <Label isRequired size="md">中文名称</Label>
+                                        <FormItem className="flex flex-col h-full justify-between">
+                                            <Label isRequired size="sm">中文名称</Label>
                                             <FormControl>
                                                 <Input
                                                     {...field}
@@ -192,8 +188,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     control={form.control}
                                     name="item.englishName"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <Label>英文名称（如适用，以30个字母为上限）</Label>
+                                        <FormItem className="flex flex-col h-full justify-between">
+                                            <Label size="sm">英文名称（如适用，以30个字母为上限）</Label>
                                             <FormControl>
                                                 <Input
                                                     {...field}
@@ -208,8 +204,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     control={form.control}
                                     name="item.datetime"
                                     render={({ field }) => (
-                                        <FormItem className="flex flex-col">
-                                            <Label isRequired>起止日期（日期最少间隔两个星期）</Label>
+                                        <FormItem className="flex flex-col h-full justify-between">
+                                            <Label isRequired size="sm">起止日期（日期最少间隔两个星期）</Label>
                                             <Popover>
                                                 <PopoverTrigger asChild>
                                                     <FormControl>
@@ -250,8 +246,8 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     control={form.control}
                                     name="item.crowdObject"
                                     render={({ field }) => (
-                                        <FormItem>
-                                            <Label isRequired>筹款目标（港币）</Label>
+                                        <FormItem className="flex flex-col h-full justify-between">
+                                            <Label isRequired size="sm">筹款目标（港币）</Label>
                                             <FormControl>
                                                 <Input
                                                     {...field}
@@ -278,7 +274,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     name="desc.chineseDesc"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <Label isRequired>中文</Label>
+                                            <Label isRequired size="sm">中文</Label>
                                             <FormControl>
                                                 <Textarea
                                                     className="h-[180px] resize-none"
@@ -295,7 +291,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     name="desc.englishDesc"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <Label>英文（如适用）</Label>
+                                            <Label size="sm">英文（如适用）</Label>
                                             <FormControl>
                                                 <Textarea
                                                     className="h-[180px] resize-none"
@@ -323,7 +319,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     name="image.avatar"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <Label isRequired>头像</Label>
+                                            <Label isRequired size="sm">头像</Label>
                                             <FormControl>
                                                 <UploadImage
                                                     value={field.value.filePath}
@@ -347,7 +343,7 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     name="image.background"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <Label isRequired>项目背景图片</Label>
+                                            <Label isRequired size="sm">项目背景图片</Label>
                                             <FormControl>
                                                 <UploadImage
                                                     value={field.value.filePath}

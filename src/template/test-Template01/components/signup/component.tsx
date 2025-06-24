@@ -16,6 +16,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCurrentLocale } from "@/locales";
 import { cn } from "@/lib/utils";
+import { Label } from "@/core/ui/label";
+import { CircleChevronRight } from "lucide-react";
 
 interface Props extends SignupProps {
     isEditing: boolean;
@@ -91,101 +93,39 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 padding: "40px"
             } as React.CSSProperties}
         >
-            <div
-                className="flex flex-col w-full pt-12 pb-8 px-8"
-                style={{
-                    position: "relative",           //父容器設為relative，讓子元素可以absolute定位
-                    maxWidth: "768px",
-                    borderRadius: "16px",
-                    border: "1px solid #FFDE59",
-                    marginTop: "30px",
-                }}
-            >
+            <div className="max-w-[768px] w-full">
                 <div
-                    className="rounded-full py-3 px-6"
-                    style={{
-                        position: "absolute",
-                        top: "-50px",
-                        left: "20px",
-                        backgroundColor: "#FFDE59",
-                        fontSize: "var(--font-size)",
-                        fontWeight: "var(--font-weight)",
-                    }}
+                    className="relative flex flex-col items-center gap-4 sm:gap-8 px-4 pb-4 sm:pb-8 sm:px-8 bg-white rounded-3xl border border-red-400"
                 >
-                    設定基本資料
-                </div>
-                <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(onHandleSubmit)}
-                        className="flex flex-col w-full gap-8"
-                        style={{
-                            fontSize: "calc(var(--font-size) - 12px)"
-                        }}
+                    <div
+                        className="initial inline-block items-center sm:absolute translate-y-[-25px] sm:translate-y-[unset] sm:top-[-32px] sm:left-[32px] px-6 py-3 bg-[#FFDE59] rounded-[44px] z-10 w-[192px] sm:w-[228px]"
                     >
-                        <div
+                        <span
                             className={cn(
-                                "font-semibold underline",
+                                "text-center text-2xl sm:text-3xl leading-none sm:leading-[130%] font-normal",
                             )}
-                            style={{
-                                fontSize: "calc(var(--font-size) - 6px)"
-                            }}
                         >
-                            請為您的項目頁面，設立登入名稱及密碼
-                        </div>
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>請提供有效電郵（同時作為登入名稱）</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>請設定登入密碼（最少8個字元，需包括英文字母及數字）</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="confirmPassword"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>請再次輸入密碼確認</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <div
-                            className="font-semibold underline"
-                            style={{
-                                fontSize: "calc(var(--font-size) - 6px)"
-                            }}
+                            設定基本資料
+                        </span>
+                    </div>
+                    <Form {...form}>
+                        <form
+                            onSubmit={form.handleSubmit(onHandleSubmit)}
+                            className="flex flex-col w-full gap-8 text-[16px] sm:text-[24px] pt-1 sm:pt-16"
                         >
-                            聯絡人
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div
+                                className={cn(
+                                    "font-semibold underline text-[18px] sm:text-[24px]",
+                                )}
+                            >
+                                請為您的項目頁面，設立登入名稱及密碼
+                            </div>
                             <FormField
                                 control={form.control}
-                                name="name"
+                                name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>姓名（請以中文或英文填寫）</FormLabel>
+                                        <Label isRequired size="sm">請提供有效電郵（同時作為登入名稱）</Label>
                                         <FormControl>
                                             <Input {...field} />
                                         </FormControl>
@@ -195,10 +135,10 @@ export const Component = ({ isEditing, ...props }: Props) => {
                             />
                             <FormField
                                 control={form.control}
-                                name="title"
+                                name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>稱謂</FormLabel>
+                                        <Label isRequired size="sm">請設定登入密碼（最少8個字元，需包括英文字母及數字）</Label>
                                         <FormControl>
                                             <Input {...field} />
                                         </FormControl>
@@ -206,39 +146,85 @@ export const Component = ({ isEditing, ...props }: Props) => {
                                     </FormItem>
                                 )}
                             />
-                        </div>
-                        <FormField
-                            control={form.control}
-                            name="phone"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>電話（只接受本港之固網電話號碼）</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="team"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>所屬機構/團體/學校名稱（如適用）</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <div className="flex flex-row justify-between">
-                            <Button style={{ backgroundColor: "var(--back-btn-color)" }}>返回上一頁</Button>
-                            <Button style={{ backgroundColor: "var(--next-btn-color)" }}>下一步</Button>
-                        </div>
-                    </form>
-                </Form>
+                            <FormField
+                                control={form.control}
+                                name="confirmPassword"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Label isRequired size="sm">請再次輸入密碼確認</Label>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div
+                                className="font-semibold underline text-[18px] sm:text-[24px]"
+                            >
+                                聯絡人
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <FormField
+                                    control={form.control}
+                                    name="name"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired size="sm">姓名（請以中文或英文填寫）</Label>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="title"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Label isRequired size="sm">稱謂</Label>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            <FormField
+                                control={form.control}
+                                name="phone"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Label isRequired size="sm">電話（只接受本港之固網電話號碼）</Label>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="team"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Label size="sm">所屬機構/團體/學校名稱（如適用）</Label>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className="flex justify-between">
+                                <Button className="bg-[var(--back-btn-color)] py-3 px-6 w-[128px] sm:w-[148px]">返回上一頁</Button>
+                                <Button className="bg-[var(--next-btn-color)] py-3 px-6 w-[128px] sm:w-[148px]">下一步 <CircleChevronRight /></Button>
+                            </div>
+                        </form>
+                    </Form>
+                </div>
             </div>
         </div>
     )

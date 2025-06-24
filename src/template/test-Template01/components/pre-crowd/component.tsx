@@ -36,73 +36,45 @@ export const Component = ({ isEditing, ...props }: Props) => {
                 hidden: hidden === "Y" && "opacity-50"
             } as React.CSSProperties}
         >
-            <div
-                className="flex flex-col justify-center relative"
-                style={{
-                    maxWidth: "768px",
-                    fontSize: "var(--font-size)",
-                    borderRadius: "16px",
-                    gap: "16px",
-                    padding: "48px 32px 32px 32px", // 增加 padding-top 给标题留空间
-                    borderColor: "var(--primary)",
-                    borderWidth: "1px",
-                    borderStyle: "solid",
-                    marginTop: "25px", // 防止标题被截断
-                }}
-            >
+            <div className="max-w-[798px] w-full">
                 <div
-                    className="flex justify-center items-center absolute mx-auto"
-                    style={{
-                        fontSize: "clamp(20px, 4vw, 30px)", // 响应式字体大小
-                        color: "var(--title-color)",
-                        height: "44px",
-                        top: "-22px", // 调整为高度的一半
-                        left: "5%",
-                        backgroundColor: "var(--primary)",
-                        borderRadius: "44px",
-                        padding: "12px 24px", // 调整内边距
-                        minWidth: "160px", // 防止标题过窄
-                        width: "fit-content", // 宽度自适应内容
-                    }}
+                    className="relative flex flex-col items-center gap-4 sm:gap-8 px-4 pb-4 sm:pb-8 sm:px-8 sm:py-12 bg-white rounded-3xl border border-red-400"
                 >
-                    {title}
-                </div>
-                <div
-                    style={{
-                        fontSize: "24px",
-                        fontWeight: "bold",
-                        textDecoration: "underline",
-                    }}
-                >
-                    {title2}
-                </div>
-                <ul
-                    style={{
-                        listStyleType: "disc",
-                        paddingLeft: "20px",
-                    }}
-                >
-                    {list.map((item) => (
-                        <li
-                            key={item.content}
-                            style={{
-                                paddingBottom: "16px",
-                                fontSize: "24px",
-                            }}
-                        >
-                            {item.content}
-                        </li>
-                    ))}
-                </ul>
-                <div className="flex justify-end">
-                    <Button
-                        style={{
-                            backgroundColor: "var(--btn-color)",
-                            color: "var(--title-color)",
-                        }}
+                    <div
+                        className="initial inline-block sm:absolute translate-y-[-25px] sm:translate-y-[unset] sm:top-[-32px] sm:left-[32px] px-6 py-3 bg-[var(--primary)] rounded-[44px] z-10"
                     >
-                        同意
-                    </Button>
+                        <span
+                            className={cn(
+                                "text-center text-2xl sm:text-3xl leading-none sm:leading-[130%] font-normal text-white",
+                            )}
+                        >
+                            {title}
+                        </span>
+                    </div>
+                    <div
+                        className="text-[18px] sm:text-[24px] font-bold underline"
+                    >
+                        {title2}
+                    </div>
+                    <ul
+                        className="list-disc list-inside gap-4 sm:gap-8"
+                    >
+                        {list.map((item) => (
+                            <li
+                                key={item.content}
+                                className="text-[16px] sm:text-[24px] pb-4"
+                            >
+                                {item.content}
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="flex justify-end w-full">
+                        <Button
+                            className="text-[var(--title-color)] bg-[var(--btn-color)] py-3 px-6"
+                        >
+                            同意
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

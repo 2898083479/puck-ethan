@@ -25,6 +25,14 @@ export const CreateCrowdConfig: Fields<CreateCrowdProps> = {
                 <Typography value={value} onChange={onChange} name="Font Typography" />
             )
         }
+    },
+    flag: {
+        label: "Create or Edit",
+        type: "radio",
+        options: [
+            { label: "Create", value: "create" },
+            { label: "Edit", value: "edit" }
+        ]
     }
 };
 
@@ -41,5 +49,6 @@ export const DefaultProps: Required<CreateCrowdProps> = {
         spacing: 0,
         align: "left",
         decoration: "underline",
-    }
+    },
+    flag: "create"
 };
