@@ -5,8 +5,8 @@ import { type VariantProps, cva } from "class-variance-authority";
 const labelVariants = cva("flex", {
     variants: {
         size: {
-            md: "text-lg leading-none font-medium mb-5",
-            sm: "text-base font-medium mb-4",
+            md: "text-[16px] sm:text-[24px] leading-none font-medium mb-5",
+            sm: "text-[14px] sm:text-[20px] font-medium mb-4",
         },
     },
     defaultVariants: {

@@ -19,6 +19,7 @@ import { LoginSuccess } from "./components/login-success";
 import { PreCrowd } from "./components/pre-crowd";
 import { Signup } from "./components/signup";
 import { CreateCrowd } from "./components/create-crowd-item";
+import { ThankCreateCrowd } from "./components/thank-create-crowd";
 
 export type BlockProps = {
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -47,7 +48,8 @@ export const TestTemplate01Config: PuckConfig = {
     LoginSuccess,
     PreCrowd,
     Signup,
-    CreateCrowd
+    CreateCrowd,
+    ThankCreateCrowd
   },
   categories: {
     Layout: {
@@ -69,7 +71,8 @@ export const TestTemplate01Config: PuckConfig = {
         "LoginSuccess",
         "PreCrowd",
         "Signup",
-        "CreateCrowd"
+        "CreateCrowd",
+        "ThankCreateCrowd"
       ],
     },
   },
